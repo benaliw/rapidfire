@@ -46,7 +46,7 @@ module Rapidfire
     def results
       @survey = Survey.find(params[:id])
       @survey_results =
-        SurveyResults.new(survey: @survey).extract
+        SurveyResults.new(survey: @survey).extract(current_user)
 
       respond_to do |format|
         format.json { render json: @survey_results, root: false }
