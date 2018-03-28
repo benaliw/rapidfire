@@ -5,7 +5,7 @@ module Rapidfire
 
     validates :question, :attempt, presence: true
     validate  :verify_answer_text
-    scope :for_user, -> (user){joins(:attempts).where("rapidfire_attempts.user_id=?",user.id) unless can_administer?}
+    scope :for_user, -> (user,can_administer?){joins(:attempts).where("rapidfire_attempts.user_id=?",user.id) unless can_administer?}
     if Rails::VERSION::MAJOR == 3
       attr_accessible :question_id, :attempt, :answer_text
     end
